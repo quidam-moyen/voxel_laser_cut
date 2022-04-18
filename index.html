@@ -1,0 +1,210 @@
+<html>
+	<head>
+		<title>Cristo VisualBench</title>
+        <meta charset="UTF-8">
+        <link rel="icon" type="image/png" href="src/ressources/cube.png"> 
+        <link href="src/styles/w3.css" rel="stylesheet">
+		<link href="src/styles/materialsicon.css" rel="stylesheet">
+        <link href="src/styles/style.css" rel="stylesheet">
+
+		<script src="src/lib/angular.min.js"></script>
+		<!-- <script src="src/lib/p5.min.js"></script>
+		<script src="src/lib/mPicker.js"></script> -->
+
+		<script src="src/lib/paper-full.js"></script>
+
+		<script src="src/lib/tools.js"></script>
+
+		<script src="src/lib/three.js"></script>
+		<script src="src/lib/OrbitControls.js"></script>
+		<script src="src/lib/EffectComposer.js"></script>
+		<script src="src/lib/Pass.js"></script>
+		<script src="src/lib/CopyShader.js"></script>
+		<script src="src/lib/FXAAShader.js"></script>
+		<script src="src/lib/RenderPass.js"></script>
+		<script src="src/lib/ShaderPass.js"></script>
+		<script src="src/lib/OutlinePass.js"></script>
+	</head>
+
+	<body ng-app="App"  ng-controller="AppCtrl" id="app" style="overflow: hidden;">
+	<!-- <body ng-app="App"  ng-controller="AppCtrl" id="app" style="overflow: hidden; background-color: #A0A0A0;"> -->
+		<div class="w3-content w3-padding" style="max-width:1564px">
+
+			<div class="flexRow w3-center">
+
+				<div id="3D"></div>
+
+				<div class="w3-display-right w3-padding w3-col l6 m5" style="top: 200;">
+					<div class="w3-container w3-black">
+						<h1>voxel editor <img src="src/ressources/cube2.png" width="50"></img></h1>
+					</div>
+
+					<br/>
+
+					<div>
+						<span class="flexRow colorLine">
+							<button class="w3-button color-button" style="background-color: #78281f ;"  ng-click="color = ' #78281f '"></button>
+							<button class="w3-button color-button" style="background-color: #b03a2e ;"  ng-click="color = ' #b03a2e '"></button>
+							<button class="w3-button color-button" style="background-color: #e74c3c ;"  ng-click="color = ' #e74c3c '"></button>
+							<button class="w3-button color-button" style="background-color: #f1948a ;"  ng-click="color = ' #f1948a '"></button>
+							<button class="w3-button color-button" style="background-color: #fadbd8 ;"  ng-click="color = ' #fadbd8 '"></button>
+						</span>
+						<span class="flexRow colorLine">
+							<button class="w3-button color-button" style="background-color: #4a235a ;"  ng-click="color = ' #4a235a '"></button>
+							<button class="w3-button color-button" style="background-color: #6c3483 ;"  ng-click="color = ' #6c3483 '"></button>
+							<button class="w3-button color-button" style="background-color: #8e44ad ;"  ng-click="color = ' #8e44ad '"></button>
+							<button class="w3-button color-button" style="background-color: #bb8fce ;"  ng-click="color = ' #bb8fce '"></button>
+							<button class="w3-button color-button" style="background-color: #e8daef ;"  ng-click="color = ' #e8daef '"></button>
+						</span>
+						<span class="flexRow colorLine">
+							<button class="w3-button color-button" style="background-color: #1b4f72 ;"  ng-click="color = ' #1b4f72 '"></button>
+							<button class="w3-button color-button" style="background-color: #2874a6 ;"  ng-click="color = ' #2874a6 '"></button>
+							<button class="w3-button color-button" style="background-color: #3498db ;"  ng-click="color = ' #3498db '"></button>
+							<button class="w3-button color-button" style="background-color: #85c1e9 ;"  ng-click="color = ' #85c1e9 '"></button>
+							<button class="w3-button color-button" style="background-color: #d6eaf8 ;"  ng-click="color = ' #d6eaf8 '"></button>
+						</span>
+						<span class="flexRow colorLine">
+							<button class="w3-button color-button" style="background-color: #145a32 ;"  ng-click="color = ' #145a32 '"></button>
+							<button class="w3-button color-button" style="background-color: #1e8449 ;"  ng-click="color = ' #1e8449 '"></button>
+							<button class="w3-button color-button" style="background-color: #27ae60 ;"  ng-click="color = ' #27ae60 '"></button>
+							<button class="w3-button color-button" style="background-color: #7dcea0 ;"  ng-click="color = ' #7dcea0 '"></button>
+							<button class="w3-button color-button" style="background-color: #d4efdf ;"  ng-click="color = ' #d4efdf '"></button>
+						</span>
+						<span class="flexRow colorLine">
+							<button class="w3-button color-button" style="background-color: #7d6608 ;"  ng-click="color = ' #7d6608 '"></button>
+							<button class="w3-button color-button" style="background-color: #b7950b ;"  ng-click="color = ' #b7950b '"></button>
+							<button class="w3-button color-button" style="background-color: #f1c40f ;"  ng-click="color = ' #f1c40f '"></button>
+							<button class="w3-button color-button" style="background-color: #f7dc6f ;"  ng-click="color = ' #f7dc6f '"></button>
+							<button class="w3-button color-button" style="background-color: #fcf3cf ;"  ng-click="color = ' #fcf3cf '"></button>
+						</span>
+						<span class="flexRow colorLine">
+							<button class="w3-button color-button" style="background-color: #784212 ;"  ng-click="color = ' #784212 '"></button>
+							<button class="w3-button color-button" style="background-color: #af601a ;"  ng-click="color = ' #af601a '"></button>
+							<button class="w3-button color-button" style="background-color: #e67e22 ;"  ng-click="color = ' #e67e22 '"></button>
+							<button class="w3-button color-button" style="background-color: #f0b27a ;"  ng-click="color = ' #f0b27a '"></button>
+							<button class="w3-button color-button" style="background-color: #fae5d3 ;"  ng-click="color = ' #fae5d3 '"></button>
+						</span>
+						<span class="flexRow colorLine">
+							<button class="w3-button color-button" style="background-color: #17202a ;"  ng-click="color = ' #17202a '"></button>
+							<button class="w3-button color-button" style="background-color: #4d5656 ;"  ng-click="color = ' #4d5656 '"></button>
+							<button class="w3-button color-button" style="background-color: #7b7d7d ;"  ng-click="color = ' #7b7d7d '"></button>
+							<button class="w3-button color-button" style="background-color: #d7dbdd ;"  ng-click="color = ' #d7dbdd '"></button>
+							<button class="w3-button color-button" style="background-color: #fbfcfc ;"  ng-click="color = ' #fbfcfc '"></button>
+						</span>
+
+
+						
+					</div>
+
+					<span class="flexRow">
+						<button class="w3-button" ng-click="outliner()"><span class="material-icons">check_box_outline_blank</span></button>
+						<b>Nom du fichier :</b> <input class="w3-input" style="width: 40%;" ng-model="name">
+					</span>
+
+					<!-- <span class="flexRow">
+						<button class="w3-button" ng-click="changeBlackWhiteMode()"><span class="material-icons">filter_b_and_w</span></button>
+						<input type="range" min="0" max="250" ng-model="contrast" ng-change="updateContrast()">
+					</span> -->
+
+					<span class="flexRow">
+						<label style="margin-right: 10px;">utiliser les gravures : </label>
+						<input type="checkbox" ng-model="useGravure">
+					</span>
+
+					<span class="flexRow">
+						<button class="w3-button" ng-click="save()"><span class="material-icons">save</span></button>
+						<input type = "file" name="inputfile" id="inputfile">
+					</span>
+
+
+					<span class="flexRow">
+						<button class="w3-button" ng-click="layersExport()"><span class="material-icons">layers</span></button>
+						<span style="width: 50px;">ep :</span> <input type="number" class="w3-input" ng-model="ep_plaque">
+					</span>
+
+					<span class="flexRow">
+						socle ? <input type="checkbox" ng-model="socleParam.use" ng-change="createSocle()" style="margin: 10px;">
+						<div class="flexColumn" ng-if="socleParam.use">
+							<span class="flexRow">
+								<button class="w3-button" ng-click="showSocle()">afficher</button>
+								taille : <input type="range" min="2" max="12" ng-model="socleParam.size" ng-change="updateSocle()">
+							</span>
+							<span class="flexRow">
+								<input type="checkbox" ng-model="setAttach" disabled>
+								<button class="w3-button" ng-click="addAttach()">attache</button>
+								<button class="w3-button" ng-click="resetAttach()">reset</button>
+							</span>
+						</div>
+					</span>
+
+				</div>
+
+
+
+				
+			</div>
+			
+			<!-- <button ng-click="seeConsole()">console</button> -->
+
+        </div>
+
+
+		<!-- <canvas id="myCanvas" resize></canvas> -->
+
+
+
+
+
+		
+		<div id="modal-canvas" class="modal" style="display: none;">
+			<div class="modal-content">
+
+				<span class="flexRow">
+					<h2 style="width: 500px;">layers</h2>
+					<span class="w3-right-align modale-cross" id="close-modal-canvas">&times;</span>
+				</span>
+			
+				<canvas id="myCanvas" resize></canvas>
+
+				<button class="w3-button" ng-click="download_svg()"><span class="material-icons">file_download</span></button>
+			</div>
+		</div>
+
+
+
+		
+	</body>
+
+
+	<script src="src/main2.js"></script>
+
+
+	<style>
+		.color-button {
+			width: 20px; 
+			height: 20px;
+		}
+
+		.colorLine {
+			height: 15px;
+		}
+
+		html,
+		body {
+			margin: 0;
+			overflow: hidden;
+			height: 100%;
+		}
+
+		/* Scale canvas with resize attribute to full size */
+		canvas[resize] {
+			/* width: 2000px;
+			height: 1000px; */
+
+			width: 400px;
+			height: 200px;
+		}
+	</style>
+
+
+</html>

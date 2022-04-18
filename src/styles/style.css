@@ -1,0 +1,237 @@
+.slidecontainer {
+    width: 100%; /* Width of the outside container */
+}
+  
+/* The slider itself */
+.slider {
+    -webkit-appearance: none;  /* Override default CSS styles */
+    appearance: none;
+    /* width: 100%; Full-width */
+    height: 10px; /* Specified height */
+    background: #d3d3d3; /* Grey background */
+    outline: none; /* Remove outline */
+    opacity: 0.7; /* Set transparency (for mouse-over effects on hover) */
+    -webkit-transition: .2s; /* 0.2 seconds transition on hover */
+    transition: opacity .2s;
+    border-radius: 30px;
+}
+
+/* Mouse-over effects */
+.slider:hover {
+    opacity: 1; /* Fully shown on mouse-over */
+}
+
+/* The slider handle (use -webkit- (Chrome, Opera, Safari, Edge) and -moz- (Firefox) to override default look) */
+.slider::-webkit-slider-thumb {
+    -webkit-appearance: none; /* Override default look */
+    appearance: none;
+    width: 10px; /* Set a specific slider handle width */
+    height: 10px; /* Slider handle height */
+    background: #333; /* Green background */
+    cursor: pointer; /* Cursor on hover */
+}
+
+.slider::-moz-range-thumb {
+    width: 12px; /* Set a specific slider handle width */
+    height: 12px; /* Slider handle height */
+    background: #333; /* Green background */
+    cursor: pointer; /* Cursor on hover */
+}
+
+.flexRow {
+    display: flex;
+    flex-direction: row;
+
+    align-items: center;
+}
+
+.flexColumn {
+    display: flex;
+    flex-direction: column;
+}
+
+
+.modal {
+	display: none; /* Hidden by default */
+	position: fixed; /* Stay in place */
+	z-index: 50; /* Sit on top */
+	left: 0;
+	top: 0;
+	width: 100%; /* Full width */
+	height: 100%; /* Full height */
+    /* padding: auto; */
+    padding-top: 100px;
+	overflow: auto; /* Enable scroll if needed */
+	background-color: rgb(0,0,0); /* Fallback color */
+	background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+.modal-content {
+	background-color: white;
+	margin: 15% auto; /* 15% from the top and centered */
+	padding: 20px;
+	width: 80%;
+	border-radius: 20px;
+}
+
+.modale-cross {
+	cursor: pointer; 
+	text-align: right; 
+	display: flex; 
+	flex-direction: column; 
+	width: 100%; 
+	font-size: 50px;
+}
+
+/* snacks */
+@keyframes rightFadeOut {
+    0% {
+        right: -3rem;
+        opacity: 0;
+    }
+
+    /* 30% {
+        position: absolute;
+        top: 40px;
+        opacity: 1;
+    } */
+
+    60% { /* 95*/
+		opacity: 1;
+		right: 20;
+	}
+	
+	80% {
+		opacity: 1;
+		right: 20;
+    }
+
+    100% {
+		right: 40;
+        opacity: 0;
+    }
+}
+
+.snack-ok {
+	background: darkolivegreen;
+	color: white;
+	
+	border-radius: 20px;
+    
+    position: fixed;
+    padding: 15px 32px;
+
+    top: 40px; 
+    right: 40px;
+
+    animation-name: rightFadeOut;
+	animation-duration: 4s;
+	
+	z-index: 1000;
+}
+
+.snack-ko {
+    background: firebrick;
+	color: white;
+	
+	border-radius: 20px;
+    
+    position: fixed;
+    padding: 15px 32px;
+
+    top: 40px; 
+    right: 40px;
+
+    animation-name: rightFadeOut;
+	animation-duration: 4s;
+	
+	z-index: 1000;
+}
+
+.confirm-box {
+	display: flex;
+	flex-direction: column;
+
+	padding: 5px;
+
+	background-color: black;
+	color: white;
+	border: 1px solid white;
+
+	position: absolute;
+	z-index: 200;
+
+	z-index: 2000;
+}
+
+
+.mytable td {
+    padding: 10px;
+}
+
+.settop {
+    align-self: flex-start;
+}
+
+
+
+
+/* src: https://www.w3schools.com/howto/tryit.asp?filename=tryhow_css_switch */
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+} 
+  
+.switch input { 
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+  
+.slider_ {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    -webkit-transition: .4s;
+    transition: .4s;
+}
+  
+.slider_:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    -webkit-transition: .4s;
+    transition: .4s;
+}
+  
+input:checked + .slider_ {
+    background-color: #2196F3;
+}
+  
+input:focus + .slider_ {
+    box-shadow: 0 0 1px #2196F3;
+}
+  
+input:checked + .slider_:before {
+    -webkit-transform: translateX(26px);
+    -ms-transform: translateX(26px);
+    transform: translateX(26px);
+}
+  
+/* Rounded sliders */
+.slider_.round {
+    border-radius: 34px;
+}
+  
+.slider_.round:before {
+    border-radius: 50%;
+}
